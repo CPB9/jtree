@@ -1,5 +1,6 @@
 package com.cpb9.jtree;
 
+import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.regex.*;
@@ -21,48 +22,17 @@ import java.util.regex.*;
  *  [Node(access, [Node(time, 2014-10-10), Node(url, labuda.com), Node(ip, 8.8.8.8)]), Node(error, [Node(unknown, [Node(error, fuck)])])]
  */
 
-
-class Node
-{
-    String name;
-    String content;
-    Node parentNode;
-    List<Node> chlds = new ArrayList<Node>();
-
-    Node()
-    {
-        this.name = null;
-        this.content = null;
-    }
-
-    Node(String values,String  name)
-    {
-        this.name = name;
-        this.content = values;
-    }
-    void push(Node t)
-    {
-        chlds.add(t);
-    }
-    void printNode()
-    {
-        System.out.println("Name: " + name + ", Value: " + content + ", ParentNode: " + parentNode +  ", Childrens: " + chlds);
-    }
-
-    @Override
-    public String toString()
-    {
-        return String.format("Node(name=%s, content=%s, children=%s)", name, content, chlds);
-    }
-
-}
-
 public class TreeParser
 {
-    public static void main(String [] args)
+    //InputStream input сделать
+    public List<Node> parse(String str)
     {
+        /*
         String str = "access\n\ttime =2014-10-10\n\turl =labuda.com\n\tip =8.8.8.8\nerrorSys\n\tunknown\n\t\terror =fuck";
         //String str = "=Буря мглою\n=Небо кроет";
+        */
+
+
         String [] strArr = str.split("\n");
 
         Pattern p = Pattern.compile("^([ \\t]*)([^=]*)(?:=(.*))?$");
@@ -111,6 +81,8 @@ public class TreeParser
         }
         for(Node node : lstNode)
             node.printNode();
+
+        return lstNode;
 
     }
 }
