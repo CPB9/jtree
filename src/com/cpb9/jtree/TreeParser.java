@@ -111,5 +111,6 @@ public class TreeParser
         }
         for(Node node : lstNode)
             node.printNode();
+
     }
 }
