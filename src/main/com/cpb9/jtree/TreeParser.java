@@ -1,9 +1,11 @@
 package com.cpb9.jtree;
 
+import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.regex.*;
+import org.apache.commons.io.IOUtils;
 
 /**
  * Input
@@ -25,13 +27,15 @@ import java.util.regex.*;
 public class TreeParser
 {
     //InputStream input сделать
-    public List<Node> parse(String str)
+    //
+    public List<Node> parse(InputStream input) throws IOException
     {
         /*
         String str = "access\n\ttime =2014-10-10\n\turl =labuda.com\n\tip =8.8.8.8\nerrorSys\n\tunknown\n\t\terror =fuck";
         //String str = "=Буря мглою\n=Небо кроет";
         */
-
+        String encoding = "UTF-8";
+        String str = IOUtils.toString(input, encoding);
 
         String [] strArr = str.split("\n");
 
@@ -79,10 +83,21 @@ public class TreeParser
                 parentNode.parentNode.push(nde);
             }
         }
-        for(Node node : lstNode)
-            node.printNode();
+        //for(Node node : lstNode)
+          //  node.printNode();
 
         return lstNode;
-
     }
+    /*
+    public  static void main(String[] args) throws IOException
+    {
+        TreeParser trPr = new TreeParser();
+        List<Node> answ;
+        answ = trPr.parse(System.in);
+
+
+        for(Node node : answ)
+            node.printNode();
+    }
+    */
 }
