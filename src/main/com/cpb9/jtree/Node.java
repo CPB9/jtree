@@ -1,43 +1,52 @@
 package com.cpb9.jtree;
 
+import com.google.common.base.MoreObjects;
+
 import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Node Class. Описывает сущность ноды, у которой есть имя, значение, родительская нода
+ * Node Class. Описывает сущность ноды, у которой есть имя, значение
  * и список потомков.
  */
 public class Node
 {
-    String name;
-    String content;
-    Node parentNode;
-    List<Node> chlds = new ArrayList<Node>();
+    final String name;
+    final String content;
+    final List<Node> children = new ArrayList<Node>();
 
-    Node()
-    {
-        this.name = null;
-        this.content = null;
-    }
-
-    Node(String values,String  name)
+    /**
+     *
+     * @param name Имя ноды
+     * @param values Значение ноды
+     */
+    public Node(String  name, String values)
     {
         this.name = name;
         this.content = values;
     }
-    void push(Node t)
+
+    /**
+     *
+     * @param t Добавление ноды в список child-ов к текущей родительской
+     */
+    public void push(Node t)
     {
-        chlds.add(t);
-    }
-    void printNode()
-    {
-        System.out.println("Name: " + name + ", Value: " + content + ", ParentNode: " + parentNode +  ", Childrens: " + chlds);
+        children.add(t);
     }
 
+    /**
+     *
+     * @return Форматированный вывод всех параметров ноды
+     */
     @Override
     public String toString()
     {
-        return String.format("Node(name=%s, content=%s, children=%s)", name, content, chlds);
+        //return String.format("Node(name=%s, content=%s, children=%s)", name, content, children);
+
+        return MoreObjects.toStringHelper(this).add("Name: ", name)
+                .add("Content: ", content).add("Childrens: ", children).toString();
+
     }
 
 }
