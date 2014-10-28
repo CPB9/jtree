@@ -29,11 +29,21 @@ public class Parser
          * ArrayList в качестве стека будем использовать.
          */
         Stack<Node> stackNode = new Stack<Node>();
+
+        /**
+         * Лист, содержащий корневые ноды, который мы вернем из метода.
+         */
+        List<Node> answList = new ArrayList<Node>();
+
         /**
          * Отступ, по нему определяем родительские ноды.
          */
         int parentIndent = 0;
 
+        /**
+         * Используется для того, чтобы праивльно работать со стеком тогда, когда отсутпы узлов равны
+         */
+        int depthEqualsNodeInStack = 0;
         /**
          * Идем по строчно.
          */
@@ -64,26 +74,41 @@ public class Parser
             indentLNode = indent.length();
             Node nde = new Node(key, value);
 
+
             /**
              * Если отступ нулевой, то это rootNode.
-             * Ее кладем в стек.
+             * Ее кладем в стек. И также кладем еще и в лсит с корневыми нодами.
+             * Каждый раз, когда встречам корневую ноду мы чистим стек.
              */
             if (indentLNode == 0)
             {
+                stackNode.clear();
                 stackNode.push(nde);
                 parentIndent = indentLNode;
+                answList.add(nde);
+                depthEqualsNodeInStack = 0;
             }
             /**
              * Если отступ растет, т.е отступ больше, чем отступ родительской, то значит перед нами - child-node.
              * Мы вытаскиваем из стека родительскую ноду и к ней крепим потомка.
-             * Если же отступ не растет, но больше 0, то эта нода на том же уровне, что и предидущая.
              */
-            else if (indentLNode >= parentIndent && indentLNode > 0)
+            else if (indentLNode > parentIndent)
             {
-                Node tmp = stackNode.pop();
+                Node tmp = stackNode.get(stackNode.size() - indentLNode + parentIndent);
                 tmp.children.add(nde);
-                stackNode.push(tmp);
                 parentIndent = indentLNode;
+                stackNode.push(nde);
+                depthEqualsNodeInStack = 0;
+            }
+            /**
+             * Если отступ текущей ноды не увеличился, то у нее будет тот же родитель, что и у предидущей.
+             */
+            else if (indentLNode == parentIndent && indentLNode > 0)
+            {
+                depthEqualsNodeInStack++;
+                Node tmp = stackNode.get(stackNode.size() - indentLNode - depthEqualsNodeInStack);
+                stackNode.push(nde);
+                tmp.children.add(nde);
             }
             /**
              * Если отступ стал меньше, это значит, что родительсокй для такой ноды будет
@@ -91,13 +116,15 @@ public class Parser
              */
             else if (indentLNode < parentIndent)
             {
-                Node tmp = stackNode.get(stackNode.size() - indentLNode);
+                Node tmp = stackNode.get(stackNode.size() - parentIndent);
                 tmp.children.add(nde);
+                stackNode.push(nde);
                 parentIndent = indentLNode;
+                depthEqualsNodeInStack = 0;
             }
         }
 
-        for(Node node : stackNode)
+        for(Node node : answList)
         {
             System.out.println(node);
         }
@@ -106,7 +133,7 @@ public class Parser
     public static void main(String [] args)
     {
         String str = "access\n\ttime =2014-10-10\n\turl =labuda.com\n\tip =8.8.8.8\nerrorSys\n\tunknown\n\t\terror =fuck";
-        String str1 = "home\n\troot\n\t\tdocs\n\t\t\tphotos\n\t\t\t\tprivate =1\n\tvovik\n\t\tdocs =2";
+        String str1 = "home\n\troot\n\t\tdocs\n\t\t\tphotos\n\t\t\t\tprivate =1\n\tvovik\n\t\tdocs =2\nHello\n\tWorld =true";
 
         System.out.println("Строка 1:");
         System.out.println(str);
