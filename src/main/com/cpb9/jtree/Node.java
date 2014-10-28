@@ -45,7 +45,7 @@ public class Node
         //return String.format("Node(name=%s, content=%s, children=%s)", name, content, children);
 
         return MoreObjects.toStringHelper(this).add("Name: ", name)
-                .add("Content: ", content).add("Childrens: ", children).toString();
+                .add("content: ", content).add("childrens: ", children).toString();
 
     }
 
