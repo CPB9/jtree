@@ -1,5 +1,9 @@
 package com.cpb9.jtree;
 
+import org.apache.commons.io.IOUtils;
+
+import java.io.IOException;
+import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Stack;
@@ -12,8 +16,9 @@ import java.util.regex.Pattern;
 public class Parser
 {
 
-    public void parse(String str)
+    public List<Node> parse(InputStream myInputStream) throws IOException
     {
+        String str = IOUtils.toString(myInputStream, "UTF-8");
         /**
          * Делим строку на подстроки, по разделителю перевода строки.
          */
@@ -124,29 +129,6 @@ public class Parser
             }
         }
 
-        for(Node node : answList)
-        {
-            System.out.println(node);
-        }
-    }
-
-    public static void main(String [] args)
-    {
-        String str = "access\n\ttime =2014-10-10\n\turl =labuda.com\n\tip =8.8.8.8\nerrorSys\n\tunknown\n\t\terror =fuck";
-        String str1 = "home\n\troot\n\t\tdocs\n\t\t\tphotos\n\t\t\t\tprivate =1\n\tvovik\n\t\tdocs =2\nHello\n\tWorld =true";
-
-        System.out.println("Строка 1:");
-        System.out.println(str);
-
-        System.out.println();
-
-        System.out.println("Строка 2:");
-        System.out.println(str1);
-
-
-        Parser parser = new Parser();
-        parser.parse(str);
-        parser.parse(str1);
-
+        return answList;
     }
 }
