@@ -1,0 +1,7 @@
+home
+    root
+        docs
+            photos
+                private =1
+    vovik
+        docs =2

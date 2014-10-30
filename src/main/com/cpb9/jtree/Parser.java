@@ -100,7 +100,7 @@ public class Parser
             else if (indentLNode > parentIndent)
             {
                 Node tmp = stackNode.get(stackNode.size() - indentLNode + parentIndent);
-                tmp.children.add(nde);
+                tmp.getChildren().add(nde);
                 parentIndent = indentLNode;
                 stackNode.push(nde);
                 depthEqualsNodeInStack = 0;
@@ -113,7 +113,7 @@ public class Parser
                 depthEqualsNodeInStack++;
                 Node tmp = stackNode.get(stackNode.size() - indentLNode - depthEqualsNodeInStack);
                 stackNode.push(nde);
-                tmp.children.add(nde);
+                tmp.getChildren().add(nde);
             }
             /**
              * Если отступ стал меньше, это значит, что родительсокй для такой ноды будет
@@ -122,7 +122,7 @@ public class Parser
             else if (indentLNode < parentIndent)
             {
                 Node tmp = stackNode.get(stackNode.size() - parentIndent);
-                tmp.children.add(nde);
+                tmp.getChildren().add(nde);
                 stackNode.push(nde);
                 parentIndent = indentLNode;
                 depthEqualsNodeInStack = 0;

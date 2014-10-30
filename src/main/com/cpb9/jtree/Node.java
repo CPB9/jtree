@@ -11,9 +11,9 @@ import java.util.List;
  */
 public class Node
 {
-    final String name;
-    final String content;
-    final List<Node> children = new ArrayList<Node>();
+    private final String name;
+    private final String content;
+    private final List<Node> children = new ArrayList<Node>();
 
     /**
      *
@@ -47,6 +47,21 @@ public class Node
         return MoreObjects.toStringHelper(this).add("Name: ", name)
                 .add("content: ", content).add("childrens: ", children).toString();
 
+    }
+
+    public String getName()
+    {
+        return this.name;
+    }
+
+    public String getContent()
+    {
+        return this.content;
+    }
+
+    public List<Node> getChildren()
+    {
+        return this.children;
     }
 
 }
