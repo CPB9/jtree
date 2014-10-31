@@ -66,8 +66,11 @@ public class Parser
              * значение (3)
              */
             m = p.matcher(line);
-            if(!m.find())
-                continue;
+            /**
+             * Если не можем распарсить строку, то выкидываем исклчение.
+             */
+             if(!m.find())
+                 throw new IOException("Ошибка в обработке строки №" + i);
 
             String indent = m.group(1);
             String key = m.group(2);
