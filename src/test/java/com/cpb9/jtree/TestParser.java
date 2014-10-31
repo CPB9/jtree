@@ -22,6 +22,7 @@ public class TestParser
 
         Parser parser = new Parser();
         List<Node> lstNde = parser.parse(inputStream);
+        System.out.println(lstNde);
 
         Assert.assertEquals("RootNode must be home: ", lstNde.get(0).getName(), "home");
     }
@@ -95,5 +96,4 @@ public class TestParser
 
         Assert.assertEquals("Second node must be root: ", lstNde.get(0).getChildren().get(0).getChildren().get(1).getContent(), "2");
     }
-
 }
