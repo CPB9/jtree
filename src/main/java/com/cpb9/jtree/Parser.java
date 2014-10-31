@@ -128,7 +128,6 @@ public class Parser
                 depthEqualsNodeInStack = 0;
             }
         }
-
         return answList;
     }
 }

@@ -1,0 +1,7 @@
+home
+ fuck
+  hello =2
+  hi =1
+ photo
+  no
+   flag =yes

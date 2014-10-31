@@ -15,35 +15,32 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-public class ParserTest
+public class TestParser
 {
     @Test
-    public void testingRootNode() throws IOException
+    public void testRootNode() throws IOException
     {
         URL url = Resources.getResource("/src/main/resources/foo.txt");
         String text = Resources.toString(url, Charsets.UTF_8);
         InputStream inputStream;
         inputStream = IOUtils.toInputStream(text);
         Parser parser = new Parser();
-        List<Node> lstNde = new ArrayList<Node>();
-        lstNde = parser.parse(inputStream);
+        List<Node> lstNde = parser.parse(inputStream);
 
-        Assert.assertEquals("Here is the test for first node(root node): ", lstNde.get(0).getName(), "home");
-
+        Assert.assertEquals("RootNode must be home: ", lstNde.get(0).getName(), "home");
     }
 
    @Test
-    public void testingSecondNode() throws IOException
+    public void testSecondNode() throws IOException
    {
        URL url = Resources.getResource("/src/main/resources/foo.txt");
        String text = Resources.toString(url, Charsets.UTF_8);
-       InputStream inputStream;
-       inputStream = IOUtils.toInputStream(text);
+       InputStream inputStream = IOUtils.toInputStream(text);
        Parser parser = new Parser();
-       List<Node> lstNde = new ArrayList<Node>();
+       List<Node> lstNde = parser.parse(inputStream);
        lstNde = parser.parse(inputStream);
 
-       Assert.assertEquals("Here is the test for second node: ", lstNde.get(0).getChildren().get(0).getName(), "home");
+       Assert.assertEquals("Second node must be root: ", lstNde.get(0).getChildren().get(0).getName(), "root");
    }
 
 }
