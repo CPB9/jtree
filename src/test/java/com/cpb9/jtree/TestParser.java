@@ -34,6 +34,66 @@ public class TestParser
         Parser parser = new Parser();
         List<Node> lstNde = parser.parse(inputStream);
 
-        Assert.assertEquals("Second node must be root: ", lstNde.get(0).getChildren().get(0).getName(), "fuck");
+        Assert.assertEquals("Second node must be root: ", lstNde.get(0).getChildren().get(0).getName(), "vovik");
     }
+    @Test
+    public void testThirdNode() throws IOException
+    {
+        URL url = Resources.getResource("foo.txt");
+        String text = Resources.toString(url, Charsets.UTF_8);
+        InputStream inputStream = IOUtils.toInputStream(text);
+        Parser parser = new Parser();
+        List<Node> lstNde = parser.parse(inputStream);
+
+        Assert.assertEquals("Third node must be docs: ", lstNde.get(0).getChildren().get(0).getChildren().get(0).getName(), "docs");
+    }
+
+    @Test
+    public void testFouthNode() throws IOException
+    {
+        URL url = Resources.getResource("foo.txt");
+        String text = Resources.toString(url, Charsets.UTF_8);
+        InputStream inputStream = IOUtils.toInputStream(text);
+        Parser parser = new Parser();
+        List<Node> lstNde = parser.parse(inputStream);
+
+        Assert.assertEquals("Fouth node must be private: ", lstNde.get(0).getChildren().get(0).getChildren().get(0).getChildren().get(0).getName(), "private");
+    }
+
+    @Test
+    public void testFouthNodeValue() throws IOException
+    {
+        URL url = Resources.getResource("foo.txt");
+        String text = Resources.toString(url, Charsets.UTF_8);
+        InputStream inputStream = IOUtils.toInputStream(text);
+        Parser parser = new Parser();
+        List<Node> lstNde = parser.parse(inputStream);
+
+        Assert.assertEquals("Fouth node value must be 1: ", lstNde.get(0).getChildren().get(0).getChildren().get(0).getChildren().get(0).getContent(), "1");
+    }
+
+    @Test
+    public void testFithNode() throws IOException
+    {
+        URL url = Resources.getResource("foo.txt");
+        String text = Resources.toString(url, Charsets.UTF_8);
+        InputStream inputStream = IOUtils.toInputStream(text);
+        Parser parser = new Parser();
+        List<Node> lstNde = parser.parse(inputStream);
+
+        Assert.assertEquals("Second node must be root: ", lstNde.get(0).getChildren().get(0).getChildren().get(1).getName(), "settings");
+    }
+
+    @Test
+    public void testFithNodeValue() throws IOException
+    {
+        URL url = Resources.getResource("foo.txt");
+        String text = Resources.toString(url, Charsets.UTF_8);
+        InputStream inputStream = IOUtils.toInputStream(text);
+        Parser parser = new Parser();
+        List<Node> lstNde = parser.parse(inputStream);
+
+        Assert.assertEquals("Second node must be root: ", lstNde.get(0).getChildren().get(0).getChildren().get(1).getContent(), "2");
+    }
+
 }

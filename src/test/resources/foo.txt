@@ -1,7 +1,5 @@
 home
- fuck
-  hello =2
-  hi =1
- photo
-  no
-   flag =yes
+ vovik
+  docs
+   private=1
+  settings=2
