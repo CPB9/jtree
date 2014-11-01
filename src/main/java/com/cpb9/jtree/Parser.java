@@ -32,6 +32,10 @@ public class Parser
         /**
          * Используется для того, чтобы праивльно работать со стеком тогда, когда отсутпы узлов равны
          */
+        /**
+         * Эталонный отсутп, это будет первый прочитанный отступ, остальные должны быть того же типа.
+         */
+        Character indentModel = null;
         int depthEqualsNodeInStack = 0;
         /**
          * Храним тут номер строки, которую мы считываем
@@ -75,6 +79,13 @@ public class Parser
                 Node nde = new Node(key, value);
 
 
+                if (indentModel != null && indentLNode != 0)
+                {
+                    if (indentModel != indent.charAt(0))
+                        throw new IOException("Разный тип отступа. Cтрока №" + i);
+                }
+
+
                 /**
                  * Если отступ нулевой, то это rootNode.
                  * Ее кладем в стек. И также кладем еще и в лсит с корневыми нодами.
@@ -99,6 +110,13 @@ public class Parser
                     parentIndent = indentLNode;
                     stackNode.push(nde);
                     depthEqualsNodeInStack = 0;
+
+                    /**
+                     * Инициализируем модель отступов.
+                     * Первый отступ будет здесь.
+                     */
+                    if (indentModel == null)
+                        indentModel = indent.charAt(0);
                 }
                 /**
                  * Если отступ текущей ноды не увеличился, то у нее будет тот же родитель, что и у предидущей.
