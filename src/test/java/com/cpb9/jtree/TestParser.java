@@ -13,7 +13,10 @@ import java.util.List;
 
 public class TestParser
 {
-
+    /**
+     *  Дерево номер 1.
+     *  Отсутпы - пробелы.
+     */
     @Test
     public void testRootNode() throws IOException
     {
@@ -133,7 +136,7 @@ public class TestParser
 
     /**
      * Второе дерево, большее, одна главная рутовая нода.
-     *
+     * Отступы - табуляция.
      */
 
 

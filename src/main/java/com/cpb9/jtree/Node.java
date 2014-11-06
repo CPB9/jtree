@@ -16,7 +16,7 @@ public class Node
     private final List<Node> children = new ArrayList<Node>();
 
     /**
-     *
+     * Constructor
      * @param name Node name
      * @param values Node value
      */
@@ -27,7 +27,7 @@ public class Node
     }
 
     /**
-     *
+     * Add node to the list
      * @param t Adding node to the child list
      */
     public void push(Node t)
@@ -36,7 +36,7 @@ public class Node
     }
 
     /**
-     *
+     * Output object method.
      * @return Format output for node
      */
     @Override
@@ -44,7 +44,6 @@ public class Node
     {
         return MoreObjects.toStringHelper(this).add("name", name)
                 .add("content", content).add("children", children).toString();
-
     }
 
     /**
