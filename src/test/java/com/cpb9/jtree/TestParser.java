@@ -28,6 +28,7 @@ public class TestParser
         List<Node> lstNde = parser.parse(inputStream);
         Assert.assertEquals("RootNode must be home: ", lstNde.get(0).getName(), "home");
     }
+
     @Test
     public void testSecondNode() throws IOException
     {
@@ -39,6 +40,7 @@ public class TestParser
 
         Assert.assertEquals("Second node must be vovik: ", lstNde.get(0).getChildren().get(0).getName(), "vovik");
     }
+
     @Test
     public void testThirdNode() throws IOException
     {
@@ -259,5 +261,149 @@ public class TestParser
 
         Assert.assertEquals("Value of the second children of node a must be 3: ", lstNde.get(0).getChildren().get(1).getContent() , "3");
     }
+    /**
+     * Дерево номер 3. Две рутовые ноды.
+     * Отступы - пробелы.
+     */
 
+    @Test
+    public void testRootNodeTree3() throws IOException
+    {
+        URL url = Resources.getResource("testFile2.txt");
+        String text = Resources.toString(url, Charsets.UTF_8);
+        InputStream inputStream = IOUtils.toInputStream(text);
+
+        Parser parser = new Parser();
+        List<Node> lstNde = parser.parse(inputStream);
+        Assert.assertEquals("RootNode must be a: ", lstNde.get(0).getName(), "a");
+    }
+
+    @Test
+    public void testSecondNodeTree3() throws IOException
+    {
+        URL url = Resources.getResource("testFile2.txt");
+        String text = Resources.toString(url, Charsets.UTF_8);
+        InputStream inputStream = IOUtils.toInputStream(text);
+
+        Parser parser = new Parser();
+        List<Node> lstNde = parser.parse(inputStream);
+        Assert.assertEquals("Second node must be b: ", lstNde.get(0).getChildren().get(0).getName(), "b");
+    }
+    @Test
+    public void testThirdNodeTree3() throws IOException
+    {
+        URL url = Resources.getResource("testFile2.txt");
+        String text = Resources.toString(url, Charsets.UTF_8);
+        InputStream inputStream = IOUtils.toInputStream(text);
+
+        Parser parser = new Parser();
+        List<Node> lstNde = parser.parse(inputStream);
+        Assert.assertEquals("Third node must be c: ", lstNde.get(0).getChildren().get(0).getChildren().get(0).getName(), "c");
+    }
+
+    @Test
+    public void testFourthNodeTree3() throws IOException
+    {
+        URL url = Resources.getResource("testFile2.txt");
+        String text = Resources.toString(url, Charsets.UTF_8);
+        InputStream inputStream = IOUtils.toInputStream(text);
+
+        Parser parser = new Parser();
+        List<Node> lstNde = parser.parse(inputStream);
+        Assert.assertEquals("Fourth node must be d: ", lstNde.get(0).getChildren().get(0).getChildren().get(0).getChildren().get(0).getName(), "d");
+    }
+    @Test
+    public void testFifthNodeTree3() throws IOException
+    {
+        URL url = Resources.getResource("testFile2.txt");
+        String text = Resources.toString(url, Charsets.UTF_8);
+        InputStream inputStream = IOUtils.toInputStream(text);
+
+        Parser parser = new Parser();
+        List<Node> lstNde = parser.parse(inputStream);
+        Assert.assertEquals("Fifth node must be e: ", lstNde.get(0).getChildren().get(0).getChildren().get(0).getChildren().get(0).getChildren().get(0).getName(), "e");
+    }
+    @Test
+    public void testSixthNodeTree3() throws IOException
+    {
+        URL url = Resources.getResource("testFile2.txt");
+        String text = Resources.toString(url, Charsets.UTF_8);
+        InputStream inputStream = IOUtils.toInputStream(text);
+
+        Parser parser = new Parser();
+        List<Node> lstNde = parser.parse(inputStream);
+        Assert.assertEquals("Sixth node must be f: ", lstNde.get(0).getChildren().get(0).getChildren().get(0).getChildren().get(0).getChildren().get(0).getChildren().get(0).getName(), "f");
+    }
+    @Test
+    public void testSixthNodeValueTree3() throws IOException
+    {
+        URL url = Resources.getResource("testFile2.txt");
+        String text = Resources.toString(url, Charsets.UTF_8);
+        InputStream inputStream = IOUtils.toInputStream(text);
+
+        Parser parser = new Parser();
+        List<Node> lstNde = parser.parse(inputStream);
+        Assert.assertEquals("Sixth node value must be 1: ", lstNde.get(0).getChildren().get(0).getChildren().get(0).getChildren().get(0).getChildren().get(0).getChildren().get(0).getContent(), "1");
+    }
+    @Test
+    public void testThirdNode2Tree3() throws IOException
+    {
+        URL url = Resources.getResource("testFile2.txt");
+        String text = Resources.toString(url, Charsets.UTF_8);
+        InputStream inputStream = IOUtils.toInputStream(text);
+
+        Parser parser = new Parser();
+        List<Node> lstNde = parser.parse(inputStream);
+        Assert.assertEquals("Third node must be g: ", lstNde.get(0).getChildren().get(0).getChildren().get(0).getChildren().get(1).getName(), "g");
+    }
+
+    @Test
+    public void testThirdNode2ValueTree3() throws IOException
+    {
+        URL url = Resources.getResource("testFile2.txt");
+        String text = Resources.toString(url, Charsets.UTF_8);
+        InputStream inputStream = IOUtils.toInputStream(text);
+
+        Parser parser = new Parser();
+        List<Node> lstNde = parser.parse(inputStream);
+        Assert.assertEquals("Third node value must be 2: ", lstNde.get(0).getChildren().get(0).getChildren().get(0).getChildren().get(1).getContent(), "2");
+    }
+
+
+    @Test
+    public void testRootNodeChildTree3() throws IOException
+    {
+        URL url = Resources.getResource("testFile2.txt");
+        String text = Resources.toString(url, Charsets.UTF_8);
+        InputStream inputStream = IOUtils.toInputStream(text);
+
+        Parser parser = new Parser();
+        List<Node> lstNde = parser.parse(inputStream);
+        Assert.assertEquals("RootNode child must be h: ", lstNde.get(0).getChildren().get(1).getName(), "h");
+    }
+
+    @Test
+    public void testRootNodeChildValueTree3() throws IOException
+    {
+        URL url = Resources.getResource("testFile2.txt");
+        String text = Resources.toString(url, Charsets.UTF_8);
+        InputStream inputStream = IOUtils.toInputStream(text);
+
+        Parser parser = new Parser();
+        List<Node> lstNde = parser.parse(inputStream);
+        Assert.assertEquals("RootNode child value must be 3: ", lstNde.get(0).getChildren().get(1).getContent(), "3");
+    }
+/*
+    @Test
+    public void testThirdNode3Tree3() throws IOException
+    {
+        URL url = Resources.getResource("testFile2.txt");
+        String text = Resources.toString(url, Charsets.UTF_8);
+        InputStream inputStream = IOUtils.toInputStream(text);
+
+        Parser parser = new Parser();
+        List<Node> lstNde = parser.parse(inputStream);
+        Assert.assertEquals("Third node must be j: ", lstNde.get(0).getChildren().get(0).getChildren().get(0).getChildren().get(2), "j");
+    }
+    */
 }
