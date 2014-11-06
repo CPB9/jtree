@@ -6,8 +6,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Node Class. Описывает сущность ноды, у которой есть имя, значение
- * и список потомков.
+ * Node Class. Describe node, every node have name, value
+ * and list of childrens.
  */
 public class Node
 {
@@ -17,8 +17,8 @@ public class Node
 
     /**
      *
-     * @param name Имя ноды
-     * @param values Значение ноды
+     * @param name Node name
+     * @param values Node value
      */
     public Node(String  name, String values)
     {
@@ -28,7 +28,7 @@ public class Node
 
     /**
      *
-     * @param t Добавление ноды в список child-ов к текущей родительской
+     * @param t Adding node to the child list
      */
     public void push(Node t)
     {
@@ -37,28 +37,38 @@ public class Node
 
     /**
      *
-     * @return Форматированный вывод всех параметров ноды
+     * @return Format output for node
      */
     @Override
     public String toString()
     {
-        //return String.format("Node(name=%s, content=%s, children=%s)", name, content, children);
-
-        return MoreObjects.toStringHelper(this).add("Name: ", name)
-                .add("content: ", content).add("childrens: ", children).toString();
+        return MoreObjects.toStringHelper(this).add("name", name)
+                .add("content", content).add("children", children).toString();
 
     }
 
+    /**
+     * Simple get-method
+     * @return Node name
+     */
     public String getName()
     {
         return this.name;
     }
 
+    /**
+     * Simple get-method
+     * @return Node value
+     */
     public String getContent()
     {
         return this.content;
     }
 
+    /**
+     * Simple get-method
+     * @return List of node childrens
+     */
     public List<Node> getChildren()
     {
         return this.children;

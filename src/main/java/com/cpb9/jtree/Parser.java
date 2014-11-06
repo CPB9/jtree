@@ -66,7 +66,7 @@ public class Parser
                  * Если не можем распарсить строку, то выкидываем исклчение.
                  */
                 if (!m.find())
-                    throw new IOException("Ошибка в обработке строки №" + i);
+                    throw new IOException("Can't parse string №" + i);
 
                 String indent = m.group(1);
                 String key = m.group(2);
@@ -82,7 +82,7 @@ public class Parser
                 if (indentModel != null && indentLNode != 0)
                 {
                     if (indentModel != indent.charAt(0))
-                        throw new IOException("Разный тип отступа. Cтрока №" + i);
+                        throw new IOException("Wrong indent type in string №" + i);
                 }
 
 
@@ -131,10 +131,12 @@ public class Parser
                 /**
                  * Если отступ стал меньше, это значит, что родительсокй для такой ноды будет
                  * нода, расположенная в стеке на столько позиций ниже, на сколько она меньше запомненной последней позиции
+                 * По сути родительской будет нода, отступ - 1.
                  */
                 else if (indentLNode < parentIndent)
                 {
-                    Node tmp = stackNode.get(stackNode.size() - parentIndent);
+                    Node tmp = stackNode.get(indentLNode - 1);
+
                     tmp.getChildren().add(nde);
                     stackNode.push(nde);
                     parentIndent = indentLNode;
