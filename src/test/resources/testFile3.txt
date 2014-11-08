@@ -1,0 +1,18 @@
+access
+	time=2014-28-07 13:08:24
+	url=hello.png
+	ip=8.8.8.8
+error
+	time=2014-11-17 14:88:24
+	url=hello.png
+	ip=8.8.8.8
+	stack
+		file=file.txt
+		line=30
+	stack
+		file=applmech.txt
+		line=1488
+access
+	time=2022-11-07 12:18:34
+	url=good.png
+	ip=8.8.8.8
