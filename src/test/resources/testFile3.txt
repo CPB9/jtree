@@ -9,9 +9,12 @@ error
 	stack
 		file=file.txt
 		line=30
+		type=unknown
 	stack
 		file=applmech.txt
 		line=1488
+		typeError
+			type=unknown
 access
 	time=2022-11-07 12:18:34
 	url=good.png
